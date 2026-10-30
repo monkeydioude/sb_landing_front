@@ -17,9 +17,8 @@ import { langFromPath } from '~/site';
 import './style.css';
 
 export const links = () => [
-  { rel: 'icon', href: '/favicon.ico', sizes: 'any' },
-  { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
-  { rel: 'apple-touch-icon', href: '/favicon.png' },
+  { rel: 'icon', href: '/favicon.ico', sizes: '32x32 48x48' },
+  { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {

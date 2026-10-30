@@ -314,6 +314,17 @@
    - .hover-shadow      shadow only, for items that must not move (FAQ rows)
    `backwards` fill: before the animation the "from" state shows, afterwards the element returns to its
    normal style, so hover transforms and shadows keep working. All of it is off for reduced motion. */
+/* Set per element from the components (style={{ '--i': index }}, [--delay:150ms]); registering them gives typed defaults. */
+@property --i {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}
+@property --delay {
+  syntax: '<time>';
+  inherits: false;
+  initial-value: 0ms;
+}
 @keyframes fade-up {
   from {
     opacity: 0;
@@ -420,7 +431,7 @@
   body {
     background: var(--background);
     color: var(--foreground);
-    font-family: var(--font-sans);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
   :focus-visible {

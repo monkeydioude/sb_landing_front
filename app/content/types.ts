@@ -1,4 +1,3 @@
-type Link = { label: string; href: string };
 type Item = { title: string; text: string };
 
 export type Plan = {

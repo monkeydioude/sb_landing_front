@@ -5,7 +5,7 @@ import { Button } from '~/components/ui/button';
 import type { Contact } from '~/content/types';
 import { cn } from '~/lib/cn';
 import { field } from '~/lib/field';
-import { pathFor, type Lang } from '~/site';
+import type { Lang } from '~/site';
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
 
@@ -64,7 +64,7 @@ export function ContactForm({ t, lang }: { t: Contact['form']; lang: Lang }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      if (!res.ok) return setStatus('error');
       form.reset();
       setPlatforms([]);
       setStatus('success');
