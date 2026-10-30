@@ -13,7 +13,8 @@ export default [
   route('contact', 'routes/contact.tsx', { id: 'contact-en' }),
   route('contactez-nous', 'routes/contact.fr.tsx'),
   route('privacy', 'routes/privacy.tsx'),
-  route('legal', 'routes/legal.tsx'),
+  route('legal', 'routes/legal.tsx', { id: 'legal-en' }),
+  route('cgu', 'routes/legal.fr.tsx'),
   route('blog', 'routes/blog.tsx'),
   route('*', 'routes/404.tsx'),
 ] satisfies RouteConfig;

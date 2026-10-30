@@ -9,6 +9,7 @@ import {
   useLocation,
 } from 'react-router';
 import { Footer } from '~/components/Footer';
+import { GradientDefs } from '~/components/GradientDefs';
 import { Header } from '~/components/Header';
 import { organizationJsonLd } from '~/lib/seo';
 import { applyTheme, themeInitScript } from '~/lib/theme';
@@ -48,6 +49,7 @@ export default function Root() {
   useEffect(applyTheme, []);
   return (
     <>
+      <GradientDefs />
       <Header lang={lang} />
       <main>
         <Outlet />

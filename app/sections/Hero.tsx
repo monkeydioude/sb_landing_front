@@ -9,14 +9,16 @@ export function Hero({ t }: { t: Home }) {
     <section className="surface-tint">
       <Container className="grid items-center gap-8 pt-page pb-section lg:grid-cols-2 lg:gap-12">
         <div>
-          <span className="inline-block rounded-full bg-brand-blue/10 px-3 py-1 text-[11px] font-bold tracking-wider text-brand-blue">
+          <span className="animate-fade-up inline-block rounded-full bg-brand-blue/10 px-3 py-1 text-[11px] font-bold tracking-wider text-brand-blue">
             {t.badge}
           </span>
           <h1 className="mt-5 text-display font-bold tracking-tight text-balance">
             <Accent text={t.h1} />
           </h1>
-          <p className="mt-6 max-w-xl text-lg text-muted-foreground">{t.sub}</p>
-          <div className="mt-8">
+          <p className="animate-fade-up mt-6 max-w-xl text-lg text-muted-foreground [--delay:100ms]">
+            {t.sub}
+          </p>
+          <div className="animate-fade-up mt-8 [--delay:200ms]">
             <Button asChild size="lg">
               <a href={`${APP_URL}/signup`}>{t.cta} →</a>
             </Button>
@@ -32,7 +34,7 @@ export function Hero({ t }: { t: Home }) {
 // fetchpriority="high", explicit width/height).
 function HeroVisual({ t }: { t: Home['hero'] }) {
   return (
-    <div className="relative overflow-hidden rounded-2xl border bg-card shadow-xl">
+    <div className="animate-fade-up relative overflow-hidden rounded-2xl border bg-card shadow-xl [--delay:150ms]">
       <div className="grid h-56 grid-cols-2 sm:h-72">
         <div className="bg-gradient-to-br from-slate-500 to-slate-800 p-3">
           <span className="inline-block max-w-full rounded-md bg-black/50 px-2 py-1 text-[11px] text-white">

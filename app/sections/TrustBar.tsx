@@ -15,7 +15,7 @@ export function TrustBar({ t }: { t: Home['trust'] }) {
           </span>
           {t.rating}
         </p>
-        <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm font-bold tracking-wider text-muted-foreground sm:gap-x-12">
+        <ul className="reveal mt-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm font-bold tracking-wider text-muted-foreground sm:gap-x-12">
           {t.logos.map((l) => (
             <li key={l}>{l}</li>
           ))}

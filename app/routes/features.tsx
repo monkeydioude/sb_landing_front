@@ -1,6 +1,6 @@
-import { metaFor, SimplePage } from '~/pages';
+import { FeaturesPage, metaFor } from '~/pages';
 
 export const meta = () => metaFor('features', 'en');
 export default function Route() {
-  return <SimplePage page="features" lang="en" />;
+  return <FeaturesPage lang="en" />;
 }

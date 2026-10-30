@@ -30,9 +30,10 @@ export function Integrations({ t }: { t: Home['integrations'] }) {
             return (
               <li
                 key={name}
-                className="flex flex-col items-center gap-3 rounded-2xl border bg-card px-4 py-8 shadow-sm"
+                className="group hover-lift reveal flex flex-col items-center gap-3 rounded-2xl border bg-card px-4 py-8 shadow-sm"
+                style={{ '--i': i % 4 } as React.CSSProperties}
               >
-                <Icon className="size-10" style={{ color }} aria-hidden />
+                <Icon className="icon-pop size-10" style={{ color }} aria-hidden />
                 <span className="text-sm font-bold">{name}</span>
               </li>
             );

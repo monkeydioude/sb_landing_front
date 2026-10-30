@@ -1,6 +1,6 @@
-import { metaFor, SimplePage } from '~/pages';
+import { ContactPage, metaFor } from '~/pages';
 
 export const meta = () => metaFor('contact', 'en');
 export default function Route() {
-  return <SimplePage page="contact" lang="en" />;
+  return <ContactPage lang="en" />;
 }

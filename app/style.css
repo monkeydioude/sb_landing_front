@@ -223,6 +223,28 @@
   --color-accent-violet: var(--accent-violet);
 }
 
+/* Always-dark surfaces (alerts banner, MCP card). On the light theme they are a step lighter than
+   sb_front's dark surface (#0f131d), which looked too heavy on a white page; the dark theme keeps it. */
+:root {
+  --inverse: #1d2535;
+  --inverse-card: #2a3347;
+  --inverse-foreground: #dfe2f1;
+  --inverse-muted: #c2c6d5;
+  --inverse-border: #3d4760;
+}
+.dark {
+  --inverse: #0f131d;
+  --inverse-card: #1c1f2a;
+  --inverse-border: #424753;
+}
+@theme inline {
+  --color-inverse: var(--inverse);
+  --color-inverse-card: var(--inverse-card);
+  --color-inverse-foreground: var(--inverse-foreground);
+  --color-inverse-muted: var(--inverse-muted);
+  --color-inverse-border: var(--inverse-border);
+}
+
 /* ========================================================================== */
 /* 3. SIZES                                                                   */
 /* ========================================================================== */
@@ -281,6 +303,103 @@
 }
 @utility bg-gradient-primary {
   background-image: var(--gradient-primary);
+}
+/* ---- Motion -------------------------------------------------------------------------------------
+   Pages other than Legal/Privacy opt in with these classes. Nothing is hidden without CSS support:
+   - .animate-fade-up   entrance on load (hero); delay with [--delay:150ms]
+   - .reveal            fades/slides in as it scrolls into view (CSS scroll-driven animation, no JS);
+                        stagger siblings with style={{ '--i': index }}
+   - .grow-y            bars growing from the baseline when scrolled into view
+   - .hover-lift        card lifts with a soft brand-coloured shadow (pointer devices only)
+   - .hover-shadow      shadow only, for items that must not move (FAQ rows)
+   `backwards` fill: before the animation the "from" state shows, afterwards the element returns to its
+   normal style, so hover transforms and shadows keep working. All of it is off for reduced motion. */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+@keyframes grow-y {
+  from {
+    transform: scaleY(0.04);
+  }
+}
+.animate-fade-up {
+  animation: fade-up 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+  animation-delay: var(--delay, 0ms);
+}
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: reveal linear backwards;
+    animation-timeline: view();
+    animation-range: entry calc(var(--i, 0) * 6%) entry calc(35% + var(--i, 0) * 6%);
+  }
+  .grow-y {
+    transform-origin: bottom;
+    animation: grow-y linear backwards;
+    animation-timeline: view();
+    animation-range: entry 10% entry 70%;
+  }
+}
+.icon-pop {
+  transition: transform 0.25s ease;
+}
+@media (hover: hover) {
+  .hover-lift,
+  .hover-shadow {
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+  .hover-lift:hover,
+  .hover-shadow:hover {
+    box-shadow:
+      0 18px 36px -14px color-mix(in oklab, var(--brand-blue) 35%, transparent),
+      0 6px 14px -6px color-mix(in oklab, var(--brand-green) 18%, transparent);
+  }
+  .hover-lift:hover {
+    transform: translateY(-4px);
+  }
+  .group:hover .icon-pop {
+    transform: scale(1.12);
+  }
+  .fx [data-slot='button'] {
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      opacity 0.2s ease;
+  }
+  .fx [data-slot='button']:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px -10px color-mix(in oklab, var(--brand-blue) 55%, transparent);
+  }
+  .fx [data-slot='button']:active {
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .reveal,
+  .grow-y {
+    animation: none !important;
+  }
+  .hover-lift:hover,
+  .group:hover .icon-pop,
+  .fx [data-slot='button']:hover {
+    transform: none !important;
+  }
+}
+
+/* Gradient icons, as in sb_front: wrap a page in .gradient-icons and every outline lucide icon inside is stroked with #gradient-primary (filled shapes such as the rating stars keep their colour). */
+.gradient-icons svg.lucide:not(.fill-current) {
+  stroke: url(#gradient-primary);
 }
 @utility surface-tint {
   background: color-mix(in oklab, var(--brand-blue) 6%, var(--background));

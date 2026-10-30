@@ -1,6 +1,6 @@
-import { metaFor, SimplePage } from '~/pages';
+import { metaFor, PricingPage, pricingFaqMeta } from '~/pages';
 
-export const meta = () => metaFor('pricing', 'fr');
+export const meta = () => [...metaFor('pricing', 'fr'), ...pricingFaqMeta('fr')];
 export default function Route() {
-  return <SimplePage page="pricing" lang="fr" />;
+  return <PricingPage lang="fr" />;
 }

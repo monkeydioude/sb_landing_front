@@ -15,7 +15,7 @@ export const PAGES = [
   { id: 'demo', en: '/demo', fr: '/demonstration' },
   { id: 'contact', en: '/contact', fr: '/contactez-nous' },
   { id: 'privacy', en: '/privacy' },
-  { id: 'legal', en: '/legal' },
+  { id: 'legal', en: '/legal', fr: '/cgu' },
   { id: 'blog', en: '/blog' },
 ] as const;
 

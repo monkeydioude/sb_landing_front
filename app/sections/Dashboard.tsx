@@ -21,10 +21,10 @@ const BARS = [
 ];
 const SERIES = ['bg-[var(--cat-4)]', 'bg-[var(--cat-2)]', 'bg-[var(--cat-10)]'];
 const STAT_STYLES = [
-  { Icon: DollarSign, tone: 'text-brand-blue bg-brand-blue/10' },
-  { Icon: TrendingUp, tone: 'text-status-spent bg-status-spent/10' },
-  { Icon: Clock, tone: 'text-status-committed bg-status-committed/10' },
-  { Icon: Wallet, tone: 'text-status-remaining bg-status-remaining/10' },
+  { Icon: DollarSign, tone: 'bg-brand-blue/10' },
+  { Icon: TrendingUp, tone: 'bg-brand-blue/10' },
+  { Icon: Clock, tone: 'bg-brand-blue/10' },
+  { Icon: Wallet, tone: 'bg-brand-blue/10' },
 ];
 
 export function Dashboard({ t, lang }: { t: Home['dashboard']; lang: Lang }) {
@@ -34,7 +34,7 @@ export function Dashboard({ t, lang }: { t: Home['dashboard']; lang: Lang }) {
     <section className="surface-tint pb-section">
       <Container>
         <div
-          className="rounded-2xl border border-t-4 bg-card p-4 shadow-xl sm:p-6"
+          className="reveal rounded-2xl border border-t-4 bg-card p-4 shadow-xl sm:p-6"
           style={{ borderTopColor: 'var(--brand-blue)' }}
           aria-hidden="true"
         >
@@ -48,7 +48,7 @@ export function Dashboard({ t, lang }: { t: Home['dashboard']; lang: Lang }) {
             {t.stats.map((s, i) => {
               const { Icon, tone } = STAT_STYLES[i];
               return (
-                <div key={s.label} className="rounded-xl border p-3 sm:p-4">
+                <div key={s.label} className="hover-lift rounded-xl border bg-card p-3 sm:p-4">
                   <div className="flex items-center justify-between">
                     <p className="text-xs text-muted-foreground">{s.label}</p>
                     <span className={`grid size-6 place-items-center rounded-md ${tone}`}>
@@ -84,7 +84,7 @@ export function Dashboard({ t, lang }: { t: Home['dashboard']; lang: Lang }) {
           <div className="mt-4 flex h-44 items-end gap-1.5 sm:h-56 sm:gap-3">
             {BARS.map((bar, i) => (
               <div key={i} className="flex h-full flex-1 flex-col items-center justify-end gap-1">
-                <div className="flex h-full w-full max-w-6 flex-col-reverse justify-start overflow-hidden rounded-sm">
+                <div className="grow-y flex h-full w-full max-w-6 flex-col-reverse justify-start overflow-hidden rounded-sm">
                   {bar.length === 1 ? (
                     <div className="bg-muted-foreground/25" style={{ height: `${bar[0]}%` }} />
                   ) : (

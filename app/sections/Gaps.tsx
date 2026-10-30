@@ -13,7 +13,8 @@ export function Gaps({ t, lang }: { t: Home['gaps']; lang: Lang }) {
           {t.cards.map((c, i) => (
             <article
               key={c.title}
-              className="flex flex-col rounded-2xl border bg-card p-6 shadow-sm sm:p-8"
+              className="hover-lift reveal flex flex-col rounded-2xl border bg-card p-6 shadow-sm sm:p-8"
+              style={{ '--i': i } as React.CSSProperties}
             >
               {/* TODO: swap for the product screenshots from the Figma export. */}
               <div className="mb-6 flex-1 rounded-xl bg-muted/60 p-5" aria-hidden="true">
