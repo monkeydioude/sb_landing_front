@@ -1,0 +1,316 @@
+/**
+ * Spendbaker landing: the one stylesheet.
+ *   1. Fonts + Tailwind
+ *   2. COLORS: brand + semantic variables, light (:root) and dark (.dark). Copied from
+ *      sb_front/app/src/styles/globals.css, keep them in sync with the app.
+ *   3. SIZES: type scale, section spacing, container, gutter. Fluid or stepped per breakpoint.
+ *   4. Base + utilities
+ */
+@import '@fontsource/lato/400.css';
+@import '@fontsource/lato/700.css';
+@import 'tailwindcss';
+
+/* ========================================================================== */
+/* 2. COLORS                                                                  */
+/* ========================================================================== */
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 16px; /* sb_front uses 14px for the dense app UI; marketing copy uses the browser default */
+  --background: #ffffff;
+  --foreground: oklch(0.145 0 0);
+  --card: #ffffff;
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: #030213;
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.95 0.0058 264.53);
+  --secondary-foreground: #030213;
+  --muted: #ececf0;
+  --muted-foreground: #717182;
+  --accent: #e9ebef;
+  --accent-foreground: #030213;
+  --destructive: #d4183d;
+  --destructive-foreground: #ffffff;
+  --border: rgba(0, 0, 0, 0.1);
+  --input: transparent;
+  --input-background: #f3f3f5;
+  --switch-background: #cbced4;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: #030213;
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+  --brand-blue: #4285f4;
+  --brand-blue-hover: #3367d6;
+  --brand-blue-foreground: #ffffff;
+  --brand-green: #33c483;
+  --brand-green-hover: #2da971;
+  --brand-green-foreground: #ffffff;
+
+  /* Budget category series (chart bars + legend swatches). */
+  --cat-1: #6366f1;
+  --cat-2: #8b5cf6;
+  --cat-3: #ec4899;
+  --cat-4: #06b6d4;
+  --cat-5: #14b8a6;
+  --cat-6: #f59e0b;
+  --cat-7: #f97316;
+  --cat-8: #ef4444;
+  --cat-9: #10b981;
+  --cat-10: #3b82f6;
+  --cat-other: #94a3b8;
+  --committed-color: #475569;
+
+  /* Financial status accents. Tint backgrounds use /15 of these, so they
+     resolve per theme instead of needing a separate -100 shade. */
+  --status-spent: #dc2626;
+  --status-committed: #ca8a04;
+  --status-remaining: #16a34a;
+  --status-info: #2563eb;
+  --accent-violet: #7c3aed;
+
+  --gradient-primary: linear-gradient(135deg, #4285f4, #33c483);
+  --gradient-primary-hover: linear-gradient(135deg, #3367d6, #2da971);
+}
+
+/**
+ * Dark theme — "Obsidian Capital".
+ * Surfaces climb a tonal ramp instead of using shadows: background < sidebar <
+ * card < popover. Every ink/surface pair below is >= 4.5:1; the raw ramp values
+ * are kept in comments so the mapping back to the design system stays readable.
+ */
+.dark {
+  --background: #0f131d; /* surface */
+  --foreground: #dfe2f1; /* on-surface           14.4:1 */
+  --card: #1c1f2a; /* surface-container */
+  --card-foreground: #dfe2f1; /*                      12.7:1 */
+  --popover: #262a35; /* surface-container-high */
+  --popover-foreground: #dfe2f1; /*                      11.1:1 */
+
+  --primary: #adc6ff;
+  --primary-foreground: #002e69; /* on-primary            7.7:1 */
+
+  --secondary: #262a35;
+  --secondary-foreground: #dfe2f1;
+  --muted: #171b26; /* surface-container-low, one step below --card */
+  --muted-foreground: #c2c6d5; /* on-surface-variant    9.6:1 on card */
+  --accent: #262a35;
+  --accent-foreground: #dfe2f1;
+
+  --destructive: #ffb4ab; /* error                10.9:1 */
+  --destructive-foreground: #690005; /* on-error              7.7:1 */
+
+  --border: #424753; /* outline-variant */
+  --input: #424753;
+  --input-background: #0a0e18; /* surface-container-lowest */
+  --switch-background: #424753;
+  --ring: #adc6ff;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+
+  --chart-1: #4d8efe; /* primary-container */
+  --chart-2: #01ae70; /* secondary-container */
+  --chart-3: #db760f; /* tertiary-container */
+  --chart-4: #d55181;
+  --chart-5: #9085e9;
+
+  --sidebar: #171b26; /* surface-container-low */
+  --sidebar-foreground: #dfe2f1;
+  --sidebar-primary: #adc6ff;
+  --sidebar-primary-foreground: #002e69;
+  --sidebar-accent: #262a35;
+  --sidebar-accent-foreground: #dfe2f1;
+  --sidebar-border: #424753;
+  --sidebar-ring: #adc6ff;
+
+  /* Brand, stepped up for dark surfaces. The gradient itself stays literal. */
+  --brand-blue: #adc6ff; /* primary             10.9:1 */
+  --brand-blue-hover: #d8e2ff; /* primary-fixed */
+  --brand-blue-foreground: #002e69; /* on-primary           7.7:1 */
+  --brand-green: #54de9b; /* secondary           10.9:1 */
+  --brand-green-hover: #74fbb5; /* secondary-fixed */
+  --brand-green-foreground: #003921; /* on-secondary         7.7:1 */
+
+  /* Same category hues, re-stepped for the dark surface: all 10 now sit in the
+     L 0.48-0.67 band and clear 3:1 vs #0f131d. */
+  --cat-1: #6366f1;
+  --cat-2: #8b5cf6;
+  --cat-3: #ec4899;
+  --cat-4: #00a5c2;
+  --cat-5: #00aa99;
+  --cat-6: #d07c00;
+  --cat-7: #e96400;
+  --cat-8: #ef4444;
+  --cat-9: #00ad76;
+  --cat-10: #3b82f6;
+  --cat-other: #8c909f;
+  --committed-color: #8c909f;
+
+  /* Status accents from the design system's own tones; all >= 10.9:1 on #0f131d. */
+  --status-spent: #ffb4ab; /* error */
+  --status-committed: #ffb780; /* tertiary */
+  --status-remaining: #54de9b; /* secondary */
+  --status-info: #adc6ff; /* primary */
+  --accent-violet: #d7b3ff;
+
+  --gradient-primary: linear-gradient(135deg, #4285f4, #33c483);
+  --gradient-primary-hover: linear-gradient(135deg, #3367d6, #2da971);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-blue-hover: var(--brand-blue-hover);
+  --color-brand-blue-foreground: var(--brand-blue-foreground);
+  --color-brand-green: var(--brand-green);
+  --color-brand-green-hover: var(--brand-green-hover);
+  --color-brand-green-foreground: var(--brand-green-foreground);
+  --color-status-spent: var(--status-spent);
+  --color-status-committed: var(--status-committed);
+  --color-status-remaining: var(--status-remaining);
+  --color-status-info: var(--status-info);
+  --color-accent-violet: var(--accent-violet);
+}
+
+/* ========================================================================== */
+/* 3. SIZES                                                                   */
+/* ========================================================================== */
+@theme {
+  --font-sans: 'Lato', ui-sans-serif, system-ui, sans-serif;
+
+  /* Type scale: fluid between a 360px and a 1280px viewport. Use as text-display, text-heading... */
+  --text-display: clamp(2.75rem, 2.1rem + 2.9vw, 4rem); /* hero h1 */
+  --text-display--line-height: 1.05;
+  --text-heading: clamp(2.25rem, 1.9rem + 1.5vw, 3.25rem); /* section h2 */
+  --text-heading--line-height: 1.15;
+  --text-title: clamp(2rem, 1.7rem + 1.2vw, 2.75rem); /* page h1 on plain pages */
+  --text-title--line-height: 1.2;
+  --text-quote: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem); /* testimonial */
+  --text-quote--line-height: 1.3;
+
+  --container-site: 72rem; /* max-w-site */
+}
+
+/* Layout rhythm: stepped per breakpoint. Use as py-section, px-gutter. */
+:root {
+  --header-h: 4.25rem; /* floating header: 0.75rem top gap + 3.5rem bar; the page scrolls up under it */
+  --section-y: 3rem;
+  --page-gap: 3rem; /* space between the floating header and a page's first block */
+  --gutter: 1.25rem;
+}
+@media (min-width: 48rem) {
+  :root {
+    --section-y: 4rem;
+    --page-gap: 3rem;
+    --gutter: 1.5rem;
+  }
+}
+@media (min-width: 64rem) {
+  :root {
+    --section-y: 7rem;
+    --page-gap: 3rem;
+  }
+}
+@theme inline {
+  --spacing-section: var(--section-y);
+  /* top padding of a page's first block: clears the floating header, then --page-gap */
+  --spacing-page: calc(var(--header-h) + var(--page-gap));
+  --spacing-gutter: var(--gutter);
+}
+
+/* ========================================================================== */
+/* 4. BASE + UTILITIES                                                        */
+/* ========================================================================== */
+/* Brand gradient helpers, as in sb_front/app/src/index.css */
+@utility text-gradient-brand {
+  background-image: linear-gradient(90deg, #4285f4 0%, #33c483 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+@utility bg-gradient-primary {
+  background-image: var(--gradient-primary);
+}
+@utility surface-tint {
+  background: color-mix(in oklab, var(--brand-blue) 6%, var(--background));
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html {
+    font-size: var(--font-size);
+    scroll-behavior: smooth;
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
