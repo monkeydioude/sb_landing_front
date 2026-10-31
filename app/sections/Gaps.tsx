@@ -1,3 +1,4 @@
+import { Link } from 'react-router';
 import { Button } from '~/components/ui/button';
 import { Container } from '~/components/Container';
 import type { Home } from '~/content/types';
@@ -24,7 +25,7 @@ export function Gaps({ t, lang }: { t: Home['gaps']; lang: Lang }) {
               <p className="mt-2 text-sm text-muted-foreground">{c.text}</p>
               <div className="mt-6 text-right">
                 <Button asChild>
-                  <a href={pathFor('features', lang)}>{c.cta} →</a>
+                  <Link to={pathFor('features', lang)}>{c.cta} →</Link>
                 </Button>
               </div>
             </article>

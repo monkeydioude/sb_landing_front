@@ -1,5 +1,6 @@
 import { Award, Box, CircleCheck, Lock, ShieldCheck } from 'lucide-react';
 import { useState } from 'react';
+import { Link } from 'react-router';
 import { Accent } from '~/components/Accent';
 import { Container } from '~/components/Container';
 import { Button } from '~/components/ui/button';
@@ -137,12 +138,12 @@ function PlanCard({
       <div className="mt-7 flex items-center justify-between gap-3 text-[11px] font-bold tracking-wider">
         <h3>{plan.featuresTitle}</h3>
         {plan.featuresLink && (
-          <a
-            href={pathFor('features', lang)}
+          <Link
+            to={pathFor('features', lang)}
             className="font-normal tracking-normal text-brand-blue underline-offset-4 hover:underline"
           >
             {plan.featuresLink}
-          </a>
+          </Link>
         )}
       </div>
       <ul className="mt-4 space-y-3 text-sm">

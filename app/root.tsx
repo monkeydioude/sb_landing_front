@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import {
   isRouteErrorResponse,
+  Link,
   Links,
   Meta,
   Outlet,
@@ -16,10 +17,13 @@ import { applyTheme, themeInitScript } from '~/lib/theme';
 import { langFromPath } from '~/site';
 import './style.css';
 
+// Vite's BASE_URL ('/' on the real domain, '/sb_landing_front/' on the GitHub Pages preview), trailing slash included.
+const BASE = import.meta.env.BASE_URL;
+
 export const links = () => [
-  { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
-  { rel: 'icon', href: '/favicon.ico', sizes: '32x32 48x48' }, // fallback for browsers without SVG icons
-  { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+  { rel: 'icon', href: `${BASE}favicon.svg`, type: 'image/svg+xml' },
+  { rel: 'icon', href: `${BASE}favicon.ico`, sizes: '32x32 48x48' }, // fallback for browsers without SVG icons
+  { rel: 'apple-touch-icon', href: `${BASE}apple-touch-icon.png` },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -30,6 +34,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="color-scheme" content="light dark" />
+        {import.meta.env.VITE_NOINDEX === 'true' && (
+          <meta name="robots" content="noindex, nofollow" />
+        )}
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <Meta />
         <Links />
@@ -64,9 +71,9 @@ export function ErrorBoundary({ error }: { error: unknown }) {
   return (
     <main className="mx-auto max-w-xl px-gutter py-section text-center">
       <h1 className="text-title font-bold">{notFound ? '404' : 'Something went wrong'}</h1>
-      <a href="/" className="mt-6 inline-block text-brand-blue underline">
+      <Link to="/" className="mt-6 inline-block text-brand-blue underline">
         spendbaker.com
-      </a>
+      </Link>
     </main>
   );
 }

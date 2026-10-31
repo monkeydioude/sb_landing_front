@@ -1,0 +1,52 @@
+# Publishes a PREVIEW of the site to GitHub Pages at https://<owner>.github.io/<repo>/.
+# It is not the production deploy: the build is marked noindex and its canonical URLs point at the preview.
+# Production (spendbaker.com) is built by Dockerfile.prod, see README "Deploying".
+name: Deploy preview to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # Actions tab -> "Deploy preview to GitHub Pages" -> Run workflow
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      # The site lives under /<repo>/ on the default GitHub Pages URL.
+      BASE_PATH: /${{ github.event.repository.name }}/
+      VITE_SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+      VITE_NOINDEX: 'true'
+      # Optional: URL that receives the demo-request form (repo variable CONTACT_ENDPOINT). Empty = the form
+      # shows its error message.
+      VITE_CONTACT_ENDPOINT: ${{ vars.CONTACT_ENDPOINT }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/client
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,6 +1,6 @@
 import { Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { NavLink, useLocation } from 'react-router';
+import { Link, NavLink, useLocation } from 'react-router';
 import { Button } from '~/components/ui/button';
 import { content } from '~/content';
 import { cn } from '~/lib/cn';
@@ -27,8 +27,8 @@ export function Header({ lang }: { lang: Lang }) {
 
   const langLink = (className: string) =>
     otherPath && (
-      <a
-        href={otherPath}
+      <Link
+        to={otherPath}
         hrefLang={other}
         lang={other}
         className={cn(
@@ -37,7 +37,7 @@ export function Header({ lang }: { lang: Lang }) {
         )}
       >
         {other}
-      </a>
+      </Link>
     );
 
   return (
