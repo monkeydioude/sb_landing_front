@@ -1,0 +1,46 @@
+# Stage 1: Build the Vite application
+FROM node:22-alpine AS build
+
+# Set the working directory
+WORKDIR /app
+
+# Copy package.json and package-lock.json
+COPY package.json package-lock.json ./
+
+# Install dependencies
+RUN npm ci
+
+# Copy the rest of the application code
+COPY . .
+
+# Build the application for production
+RUN npm run build
+
+# Pre-compressed copies next to the files (app.js.br, app.js.gz): thumb serves them to the
+# browsers that accept them, and compresses nothing on the fly
+RUN apk add --no-cache brotli gzip && \
+  find build/client -type f \( -name '*.js' -o -name '*.css' -o -name '*.html' -o -name '*.svg' -o -name '*.json' \) \
+  -exec gzip -k -9 {} \; -exec brotli -k -q 11 {} \;
+
+# Stage 2: Build the thumb tool
+FROM golang:alpine AS thumb-build
+RUN go install github.com/calqs/thumb@v1.0.1
+
+# Stage 3: Serve the application with thumb
+FROM alpine:latest
+
+# Install CA certificates in case thumb needs to make HTTPS requests
+RUN apk --no-cache add ca-certificates
+
+# Copy thumb binary
+COPY --from=thumb-build /go/bin/thumb /usr/local/bin/thumb
+
+# Copy built assets
+COPY --from=build /app/build/client /app/build/client
+
+# Expose port 4057
+EXPOSE 4056
+
+# Start thumb to serve the index.html on port 4057. index.html is revalidated on each load so a
+# redeploy shows up at once; the assets/ file names are content-hashed, so browsers keep them a year.
+CMD ["thumb", "-index-cache", "no-cache", "-assets-cache", "public, max-age=31536000, immutable", "/app/build/client/index.html", "4056"]
