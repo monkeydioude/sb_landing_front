@@ -1,4 +1,11 @@
-export const SITE_URL = 'https://spendbaker.com';
+/**
+ * Public origin (plus base path, if any) of this build; canonical URLs, hreflang, Open Graph and the sitemap
+ * are built from it. Defaults to production. The GitHub Pages preview sets VITE_SITE_URL, see deploy.yml.
+ * `import.meta.env` is optional-chained because react-router.config.ts also imports this file in plain Node.
+ */
+export const SITE_URL: string = (
+  import.meta.env?.VITE_SITE_URL || 'https://spendbaker.com'
+).replace(/\/$/, '');
 export const SITE_NAME = 'Spendbaker';
 export const APP_URL = 'https://app.spendbaker.com';
 
