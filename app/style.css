@@ -309,7 +309,6 @@
    - .animate-fade-up   entrance on load (hero); delay with [--delay:150ms]
    - .reveal            fades/slides in as it scrolls into view (CSS scroll-driven animation, no JS);
                         stagger siblings with style={{ '--i': index }}
-   - .grow-y            bars growing from the baseline when scrolled into view
    - .hover-lift        card lifts with a soft brand-coloured shadow (pointer devices only)
    - .hover-shadow      shadow only, for items that must not move (FAQ rows)
    `backwards` fill: before the animation the "from" state shows, afterwards the element returns to its
@@ -337,11 +336,6 @@
     transform: translateY(24px);
   }
 }
-@keyframes grow-y {
-  from {
-    transform: scaleY(0.04);
-  }
-}
 .animate-fade-up {
   animation: fade-up 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
   animation-delay: var(--delay, 0ms);
@@ -352,11 +346,63 @@
     animation-timeline: view();
     animation-range: entry calc(var(--i, 0) * 6%) entry calc(35% + var(--i, 0) * 6%);
   }
-  .grow-y {
-    transform-origin: bottom;
-    animation: grow-y linear backwards;
-    animation-timeline: view();
-    animation-range: entry 10% entry 70%;
+}
+/* Dashboard entrance (see Dashboard.tsx): the panel's data-anim is "idle" until it is active and has been seen,
+   then "play". Without data-anim (prerendered HTML, reduced motion) everything is simply visible. */
+@keyframes bar-rise {
+  from {
+    transform: scaleY(0);
+  }
+}
+@keyframes row-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+.bar-rise {
+  transform-origin: bottom;
+}
+[data-anim='idle'] .bar-rise {
+  transform: scaleY(0);
+}
+[data-anim='idle'] .row-in,
+[data-anim='idle'] .fade-in {
+  opacity: 0;
+}
+[data-anim='play'] .bar-rise {
+  animation: bar-rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+  animation-delay: calc(var(--i, 0) * 45ms + 120ms);
+}
+[data-anim='play'] .bar-rise-late {
+  animation-delay: calc(var(--i, 0) * 45ms + 220ms);
+}
+[data-anim='play'] .row-in {
+  animation: row-in 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+  animation-delay: calc(var(--i, 0) * 55ms + 120ms);
+}
+[data-anim='play'] .fade-in {
+  animation: fade-in 0.5s ease backwards;
+}
+@keyframes tab-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+.tab-progress {
+  animation: tab-progress linear forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .faq-item svg {
+    transition: none !important;
   }
 }
 .icon-pop {
@@ -398,7 +444,9 @@
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-up,
   .reveal,
-  .grow-y {
+  .bar-rise,
+  .row-in,
+  .fade-in {
     animation: none !important;
   }
   .hover-lift:hover,

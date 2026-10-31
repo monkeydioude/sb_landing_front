@@ -1,4 +1,5 @@
 import { Accent } from '~/components/Accent';
+import { BeforeAfterArt } from '~/components/BeforeAfterArt';
 import { Container } from '~/components/Container';
 import { Button } from '~/components/ui/button';
 import type { Home } from '~/content/types';
@@ -30,19 +31,18 @@ export function Hero({ t }: { t: Home }) {
   );
 }
 
-// TODO: replace the gradient panes with the hero photo from the Figma export (AVIF/WebP, eager,
-// fetchpriority="high", explicit width/height).
 function HeroVisual({ t }: { t: Home['hero'] }) {
   return (
     <div className="animate-fade-up relative overflow-hidden rounded-2xl border bg-card shadow-xl [--delay:150ms]">
-      <div className="grid h-56 grid-cols-2 sm:h-72">
-        <div className="bg-gradient-to-br from-slate-500 to-slate-800 p-3">
-          <span className="inline-block max-w-full rounded-md bg-black/50 px-2 py-1 text-[11px] text-white">
+      <div className="relative grid h-56 grid-cols-2 sm:h-72">
+        <BeforeAfterArt className="absolute inset-0 size-full" />
+        <div className="relative p-3">
+          <span className="inline-block max-w-full rounded-md bg-black/55 px-2 py-1 text-[11px] text-white backdrop-blur-sm">
             {t.before}
           </span>
         </div>
-        <div className="bg-gradient-to-br from-brand-blue/60 to-brand-green/60 p-3 text-right">
-          <span className="inline-block rounded-md bg-brand-blue px-2 py-1 text-[11px] font-bold text-white">
+        <div className="relative p-3 text-right">
+          <span className="inline-block rounded-md bg-brand-blue text-brand-blue-foreground px-2 py-1 text-[11px] font-bold">
             {t.after}
           </span>
         </div>

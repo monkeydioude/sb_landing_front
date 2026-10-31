@@ -17,7 +17,8 @@ import { langFromPath } from '~/site';
 import './style.css';
 
 export const links = () => [
-  { rel: 'icon', href: '/favicon.ico', sizes: '32x32 48x48' },
+  { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
+  { rel: 'icon', href: '/favicon.ico', sizes: '32x32 48x48' }, // fallback for browsers without SVG icons
   { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
 ];
 

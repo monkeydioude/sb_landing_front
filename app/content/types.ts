@@ -137,10 +137,54 @@ export type Home = {
   dashboard: {
     title: string;
     live: string;
-    tabs: string[];
+    tabs: string[]; // [overview, expenses, categories]
     stats: { label: string; value: string; note: string }[];
-    chart: string;
-    filters: string[];
+    overview: {
+      title: string;
+      periods: string[]; // [month, quarter, year]
+      quarter: string; // prefix, e.g. "Q" -> Q1
+      budget: string;
+      committed: string;
+      regions: string[]; // [North America, Europe, LATAM, Unplanned]
+      label: string;
+    };
+    categories: {
+      title: string;
+      currency: string;
+      periods: string[];
+      category: string;
+      total: string;
+      north: string; // expandable parent row, followed by its children
+      children: string[]; // paid media, content & creative, events: the subcategories of the first row
+      others: string[]; // europe, latam, unplanned
+      totalRow: string;
+      legend: string;
+      within: string;
+      over: string;
+      expand: string;
+    };
+    expenses: {
+      title: string;
+      search: string;
+      mine: string;
+      add: string;
+      export: string;
+      columns: string[]; // user, vendor, category, description, amount, status, start, end
+      status: { spent: string; committed: string };
+      rowsPerPage: string;
+      range: string;
+      rows: {
+        user: string;
+        vendor: string;
+        category: string;
+        path: string;
+        description: string;
+        amount: number;
+        status: 'spent' | 'committed';
+        start: string; // ISO date
+        end: string;
+      }[];
+    };
   };
   trust: { label: string; rating: string; logos: string[] };
   free: { title: string; items: Item[]; question: string };
