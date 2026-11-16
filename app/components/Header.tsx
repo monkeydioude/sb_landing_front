@@ -7,7 +7,6 @@ import { cn } from '~/lib/cn';
 import { APP_URL, pathFor, translatedPath, type Lang } from '~/site';
 import { Container } from './Container';
 import { Logo } from './Logo';
-import { ThemeToggle } from './ThemeToggle';
 
 // The full nav fits from `lg` (1024px) up; below that it lives in the burger menu.
 export function Header({ lang }: { lang: Lang }) {
@@ -54,15 +53,17 @@ export function Header({ lang }: { lang: Lang }) {
             <div className="ml-auto flex items-center gap-1">
               <nav aria-label="Secondary" className="hidden items-center gap-1 lg:flex">
                 <NavItem to={pathFor('contact', lang)}>{t.contact}</NavItem>
-                <a href={`${APP_URL}/login`} className={navLinkClass}>
-                  {t.login}
-                </a>
               </nav>
               {langLink('hidden lg:inline-flex')}
-              <ThemeToggle label={t.theme} />
-              <Button asChild className="ml-1 hidden sm:inline-flex">
-                <a href={`${APP_URL}/signup`}>{t.cta}</a>
-              </Button>
+              {/* Login sits right next to the main call to action, as a grey button */}
+              <div className="ml-2 hidden items-center gap-2 sm:flex">
+                <Button asChild variant="ghost" className={loginClass}>
+                  <a href={`${APP_URL}/login`}>{t.login}</a>
+                </Button>
+                <Button asChild>
+                  <a href={`${APP_URL}/signup`}>{t.cta}</a>
+                </Button>
+              </div>
               <button
                 type="button"
                 className="grid size-9 place-items-center rounded-md hover:bg-accent lg:hidden"
@@ -94,14 +95,16 @@ export function Header({ lang }: { lang: Lang }) {
                 <NavItem to={pathFor('contact', lang)} block>
                   {t.contact}
                 </NavItem>
-                <a href={`${APP_URL}/login`} className={cn(navLinkClass, 'block')}>
-                  {t.login}
-                </a>
               </nav>
               <div className="mt-3 flex items-center gap-2">
-                <Button asChild className="flex-1 sm:hidden">
-                  <a href={`${APP_URL}/signup`}>{t.cta}</a>
-                </Button>
+                <div className="flex flex-1 gap-2 sm:hidden">
+                  <Button asChild variant="ghost" className={cn(loginClass, 'flex-1')}>
+                    <a href={`${APP_URL}/login`}>{t.login}</a>
+                  </Button>
+                  <Button asChild className="flex-1">
+                    <a href={`${APP_URL}/signup`}>{t.cta}</a>
+                  </Button>
+                </div>
                 {langLink('ml-auto')}
               </div>
             </div>
@@ -111,6 +114,9 @@ export function Header({ lang }: { lang: Lang }) {
     </header>
   );
 }
+
+// Grey, filled: reads as a secondary action next to the gradient "Try for free" button.
+const loginClass = 'bg-accent text-foreground hover:bg-accent/70';
 
 const navLinkClass =
   'rounded-md border border-transparent px-3.5 py-2 text-sm text-foreground/75 transition-colors hover:bg-accent hover:text-foreground';

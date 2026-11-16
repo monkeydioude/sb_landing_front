@@ -2,6 +2,8 @@ import { Container } from '~/components/Container';
 import { content } from '~/content';
 import { buildMeta } from '~/lib/seo';
 import { LegalDocument } from '~/sections/legal/LegalDocument';
+import { DemoHero } from '~/sections/demo/DemoHero';
+import { DemoTour } from '~/sections/demo/DemoTour';
 import { ContactHero } from '~/sections/contact/ContactHero';
 import { FeaturesCta } from '~/sections/features/FeaturesCta';
 import { FeaturesHero } from '~/sections/features/FeaturesHero';
@@ -43,13 +45,14 @@ export function HomePage({ lang }: { lang: Lang }) {
   );
 }
 
-export function SimplePage({ page, lang }: { page: 'features' | 'demo' | 'contact'; lang: Lang }) {
-  const t = content[lang][page];
+export function DemoPage({ lang }: { lang: Lang }) {
+  const t = content[lang].demo;
   return (
-    <Container className="fx pt-page pb-section text-center">
-      <h1 className="mx-auto max-w-3xl text-title font-bold tracking-tight text-balance">{t.h1}</h1>
-      <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">{t.sub}</p>
-    </Container>
+    <div className="fx surface-tint gradient-icons">
+      <DemoHero t={t} lang={lang} />
+      <DemoTour lang={lang} />
+      <FinalCta t={t.final} lang={lang} secondaryPage="contact" />
+    </div>
   );
 }
 
@@ -60,7 +63,7 @@ export function PricingPage({ lang }: { lang: Lang }) {
       <PricingPlans t={t} lang={lang} />
       <Assurances items={t.assurances} />
       <Faq t={t.faq} />
-      <FinalCta t={t.final} lang={lang} />
+      <FinalCta t={t.final} lang={lang} secondaryPage="contact" />
     </div>
   );
 }

@@ -22,6 +22,7 @@ import {
   Workflow,
   Zap,
 } from 'lucide-react';
+import assistantHappy from '~/assets/photos/assistant-happy.webp';
 import { Container } from '~/components/Container';
 import { cn } from '~/lib/cn';
 import type { Features } from '~/content/types';
@@ -169,7 +170,12 @@ export function Reporting({ t }: { t: Features['reporting'] }) {
         <FeatureCard {...t.roi} icon={LineChart} footIcon={BarChart3} />
       </div>
       <div className="mt-4 grid gap-4 lg:grid-cols-[5fr_6fr]">
-        <FeatureCard {...t.summaries} icon={Sparkles} footIcon={Sparkles}>
+        <FeatureCard
+          {...t.summaries}
+          icon={Sparkles}
+          image={{ src: assistantHappy, alt: '' }} // decorative: the card title already says what it is
+          footIcon={Sparkles}
+        >
           <figure className="mt-5 rounded-lg border bg-muted/50 p-4 text-xs">
             <figcaption className="mb-1.5 flex items-center gap-1.5 text-[10px] font-bold tracking-wider text-brand-green">
               <span className="size-1.5 rounded-full bg-brand-green" aria-hidden />{' '}
