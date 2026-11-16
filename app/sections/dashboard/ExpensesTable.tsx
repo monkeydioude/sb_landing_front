@@ -1,6 +1,7 @@
 import { ChevronLeft, ChevronRight, Download, Plus, Search } from 'lucide-react';
 import type { Home } from '~/content/types';
 import { cn } from '~/lib/cn';
+import { PEOPLE } from './avatars';
 import type { Format } from './format';
 
 const STATUS = {
@@ -56,9 +57,16 @@ export function ExpensesTable({ t, fmt }: { t: Home['dashboard']['expenses']; fm
                 style={{ '--i': n } as React.CSSProperties}
               >
                 <td className="px-3 py-1.5">
-                  <span className="grid size-7 place-items-center rounded-full bg-gradient-primary text-[11px] font-bold text-white">
-                    {r.user}
-                  </span>
+                  <img
+                    src={PEOPLE[r.user].src}
+                    alt={PEOPLE[r.user].name}
+                    title={PEOPLE[r.user].name}
+                    width={28}
+                    height={28}
+                    loading="lazy"
+                    decoding="async"
+                    className="avatar-pop size-7 rounded-full object-cover ring-2 ring-card"
+                  />
                 </td>
                 <td className="px-3 py-1.5">{r.vendor}</td>
                 <td className="px-3 py-1.5">

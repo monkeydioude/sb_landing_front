@@ -126,6 +126,29 @@ export type Contact = {
   };
 };
 
+export type Demo = {
+  title: string;
+  description: string;
+  badge: string;
+  h1: string; // *asterisks* = gradient accent
+  sub: string;
+  ctaPrimary: string;
+  ctaSecondary: string;
+  tourLabel: string; // accessible name of the tour
+  steps: { title: string; text: string }[]; // 1 budget, 2 expenses, 3 overview, 4 assistant
+  stepWord: string; // "Step"
+  prev: string;
+  next: string;
+  chat: {
+    assistant: string;
+    question: string;
+    answer: string;
+    sources: string;
+    placeholder: string;
+  };
+  final: { title: string; sub: string; cta: string; secondary: string };
+};
+
 export type Home = {
   title: string;
   description: string;
@@ -133,7 +156,15 @@ export type Home = {
   h1: string; // text between *asterisks* is rendered as the gradient accent
   sub: string;
   cta: string;
-  hero: { before: string; after: string; runway: string; runwayValue: string; committed: string };
+  hero: {
+    before: string;
+    after: string;
+    beforeAlt: string;
+    afterAlt: string;
+    runway: string;
+    runwayValue: string;
+    committed: string;
+  };
   dashboard: {
     title: string;
     live: string;
@@ -187,7 +218,7 @@ export type Home = {
     };
   };
   trust: { label: string; rating: string; logos: string[] };
-  free: { title: string; items: Item[]; question: string };
+  free: { title: string; items: Item[]; question: string; photoAlt: string; assistantAlt: string };
   gaps: {
     title: string;
     cards: (Item & { cta: string })[];
@@ -221,13 +252,12 @@ export type Content = {
     contact: string;
     login: string;
     cta: string;
-    theme: string;
     menu: string;
   };
   footer: { copyright: string; legal: string; privacy: string };
   home: Home;
   features: Features;
   pricing: Pricing;
-  demo: { title: string; description: string; h1: string; sub: string };
+  demo: Demo;
   contact: Contact;
 };

@@ -1,4 +1,7 @@
-import { BarChart3, MessageSquare, ReceiptText, ShieldCheck } from 'lucide-react';
+import { BarChart3, ReceiptText, ShieldCheck } from 'lucide-react';
+import assistantHappy from '~/assets/photos/assistant-happy.webp';
+import laptop1100 from '~/assets/photos/laptop-1100.webp';
+import laptop640 from '~/assets/photos/laptop-640.webp';
 import { Container } from '~/components/Container';
 import type { Home } from '~/content/types';
 import { SectionHeading } from './SectionHeading';
@@ -11,11 +14,30 @@ export function FreeMarketers({ t }: { t: Home['free'] }) {
       <Container>
         <SectionHeading title={t.title} />
         <div className="mt-10 grid items-center gap-8 lg:mt-16 lg:gap-10 lg:grid-cols-2">
-          {/* TODO: replace with the Figma photo (lazy, explicit width/height). */}
-          <div className="reveal relative h-80 rounded-2xl bg-gradient-to-br from-brand-blue/30 to-brand-green/30 lg:h-96">
-            <p className="absolute right-4 bottom-4 left-4 flex gap-2 rounded-xl border bg-card/95 p-3 text-xs shadow-lg">
-              <MessageSquare className="size-4 shrink-0 text-brand-blue" aria-hidden />“{t.question}
-              ”
+          <div className="reveal relative h-80 overflow-hidden rounded-2xl bg-muted lg:h-96">
+            <img
+              src={laptop640}
+              srcSet={`${laptop640} 640w, ${laptop1100} 1100w`}
+              sizes="(min-width: 1024px) 540px, 100vw"
+              alt={t.photoAlt}
+              width={640}
+              height={640}
+              loading="lazy"
+              decoding="async"
+              className="size-full object-cover object-[50%_30%]"
+            />
+            {/* The assistant answers questions about the budget: its mascot sits with the question. */}
+            <p className="absolute right-4 bottom-4 left-4 flex items-center gap-3 rounded-xl border bg-card/95 p-3 text-xs shadow-lg backdrop-blur-sm">
+              <img
+                src={assistantHappy}
+                alt={t.assistantAlt}
+                width={32}
+                height={32}
+                loading="lazy"
+                decoding="async"
+                className="size-8 shrink-0 object-contain"
+              />
+              <span>“{t.question}”</span>
             </p>
           </div>
           <ul className="space-y-4">

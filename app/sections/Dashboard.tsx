@@ -1,8 +1,9 @@
 import { Clock, DollarSign, TrendingUp, Wallet } from 'lucide-react';
-import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
+import { useId } from 'react';
 import { Container } from '~/components/Container';
 import type { Home } from '~/content/types';
 import { cn } from '~/lib/cn';
+import { useTabAutoplay } from '~/lib/useTabAutoplay';
 import type { Lang } from '~/site';
 import { CategoryTable } from './dashboard/CategoryTable';
 import { ExpensesTable } from './dashboard/ExpensesTable';
@@ -22,61 +23,21 @@ const AUTO_MS = 3000;
 
 export function Dashboard({ t, lang }: { t: Home['dashboard']; lang: Lang }) {
   const id = useId();
-  const card = useRef<HTMLDivElement>(null);
-  const [tab, setTab] = useState(0);
-  // Autoplay: tabs advance on their own while the card is on screen, so a visitor scrolling past
-  // sees all three. It pauses on hover/focus and ends for good after the visitor clicks anywhere in the card.
-  const [autoplay, setAutoplay] = useState(true);
-  const [onScreen, setOnScreen] = useState(false);
-  const [paused, setPaused] = useState(false);
-  const [reduceMotion, setReduceMotion] = useState(true); // true until known: no autoplay without JS/measurement
-  // Entrance animation. In the prerendered HTML nothing is hidden. After hydration (before first paint) the
-  // panels are "armed": their bars and rows wait at the start state. The active panel then plays once the
-  // card has been on screen, and again every time a tab becomes active. Never armed with reduced motion.
-  const [armed, setArmed] = useState(false);
-  const [seen, setSeen] = useState(false);
-  const running = autoplay && onScreen && !paused && !reduceMotion;
+  // Starts on Expenses (index 1): it is the most human view (avatars), so it is the first thing that plays.
+  // The autoplay then goes Expenses -> Categories -> Overview -> Expenses... (see useTabAutoplay)
+  const {
+    index: tab,
+    choose,
+    running,
+    observeRef,
+    interactionProps,
+    animState,
+  } = useTabAutoplay({
+    count: t.tabs.length,
+    interval: AUTO_MS,
+    initial: 1,
+  });
   const fmt = makeFormat(lang);
-
-  useEffect(() => {
-    const mq = matchMedia('(prefers-reduced-motion: reduce)');
-    setReduceMotion(mq.matches);
-    const onChange = () => setReduceMotion(mq.matches);
-    mq.addEventListener('change', onChange);
-    return () => mq.removeEventListener('change', onChange);
-  }, []);
-
-  useLayoutEffect(() => {
-    setArmed(!matchMedia('(prefers-reduced-motion: reduce)').matches);
-  }, []);
-
-  useEffect(() => {
-    if (onScreen) setSeen(true);
-  }, [onScreen]);
-
-  useEffect(() => {
-    const el = card.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([e]) => setOnScreen(e.isIntersecting && e.intersectionRatio >= 0.4),
-      {
-        threshold: [0, 0.4, 0.6, 1],
-      },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!running) return;
-    const timer = setTimeout(() => setTab((i) => (i + 1) % t.tabs.length), AUTO_MS);
-    return () => clearTimeout(timer);
-  }, [running, tab, t.tabs.length]);
-
-  const choose = (i: number) => {
-    setAutoplay(false); // the visitor took over
-    setTab(i);
-  };
 
   function onKeyDown(e: React.KeyboardEvent) {
     const next = e.key === 'ArrowRight' ? tab + 1 : e.key === 'ArrowLeft' ? tab - 1 : null;
@@ -91,12 +52,8 @@ export function Dashboard({ t, lang }: { t: Home['dashboard']; lang: Lang }) {
     <section className="surface-tint pb-section">
       <Container>
         <div
-          ref={card}
-          onPointerEnter={() => setPaused(true)}
-          onPointerLeave={() => setPaused(false)}
-          onClickCapture={() => setAutoplay(false)} // any click inside the card ends the autoplay
-          onFocusCapture={() => setPaused(true)}
-          onBlurCapture={() => setPaused(false)}
+          ref={observeRef}
+          {...interactionProps}
           className="reveal rounded-2xl border border-t-4 bg-card p-3 shadow-xl sm:p-5"
           style={{ borderTopColor: 'var(--brand-blue)' }}
         >
@@ -174,7 +131,7 @@ export function Dashboard({ t, lang }: { t: Home['dashboard']; lang: Lang }) {
                 aria-labelledby={`${id}-tab-${i}`}
                 inert={tab !== i}
                 aria-hidden={tab !== i}
-                data-anim={armed ? (seen && tab === i ? 'play' : 'idle') : undefined}
+                data-anim={animState(i)}
                 className={cn(
                   'col-start-1 row-start-1 flex flex-col',
                   tab !== i && 'pointer-events-none invisible',

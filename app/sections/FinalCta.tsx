@@ -3,14 +3,16 @@ import { Accent } from '~/components/Accent';
 import { Container } from '~/components/Container';
 import { Waves } from '~/components/Waves';
 import { Button } from '~/components/ui/button';
-import { APP_URL, pathFor, type Lang } from '~/site';
+import { APP_URL, pathFor, type Lang, type PageId } from '~/site';
 
 type Props = {
   t: { title: string; cta: string; sub?: string; secondary?: string };
   lang: Lang;
+  /** Where the second button goes. Default: the demo page. */
+  secondaryPage?: PageId;
 };
 
-export function FinalCta({ t, lang }: Props) {
+export function FinalCta({ t, lang, secondaryPage = 'demo' }: Props) {
   return (
     <section className="surface-tint relative overflow-hidden pt-section text-center">
       <Container className="reveal">
@@ -24,7 +26,7 @@ export function FinalCta({ t, lang }: Props) {
           </Button>
           {t.secondary && (
             <Button asChild size="lg" variant="outline">
-              <Link to={pathFor('demo', lang)}>{t.secondary}</Link>
+              <Link to={pathFor(secondaryPage, lang)}>{t.secondary}</Link>
             </Button>
           )}
         </div>

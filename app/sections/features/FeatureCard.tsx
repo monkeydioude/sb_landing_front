@@ -3,6 +3,8 @@ import { cn } from '~/lib/cn';
 
 type Props = {
   icon: LucideIcon;
+  /** A picture in place of the icon (e.g. the assistant mascot). */
+  image?: { src: string; alt: string };
   tag?: string;
   title: string;
   text: string;
@@ -16,6 +18,7 @@ type Props = {
 /** One module card: icon + small tag on top, title and text, an optional visual, an optional footer line. */
 export function FeatureCard({
   icon: Icon,
+  image,
   tag,
   title,
   text,
@@ -40,7 +43,19 @@ export function FeatureCard({
             dark ? 'bg-white/10' : 'bg-brand-blue/10 text-brand-blue',
           )}
         >
-          <Icon className="size-4.5" aria-hidden />
+          {image ? (
+            <img
+              src={image.src}
+              alt={image.alt}
+              width={28}
+              height={28}
+              loading="lazy"
+              decoding="async"
+              className="size-7 object-contain"
+            />
+          ) : (
+            <Icon className="size-4.5" aria-hidden />
+          )}
         </span>
         {tag && (
           <span

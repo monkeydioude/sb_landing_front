@@ -25,7 +25,7 @@ export function FeaturesCta({ t, lang }: { t: Features['cta']; lang: Lang }) {
             <a href={`${APP_URL}/signup`}>{t.primary} →</a>
           </Button>
           <Button asChild size="lg" variant="outline">
-            <Link to={pathFor('demo', lang)}>{t.secondary}</Link>
+            <Link to={pathFor('contact', lang)}>{t.secondary}</Link>
           </Button>
         </div>
         <ul className="mt-8 flex flex-wrap justify-center gap-x-8 gap-y-2 text-[11px] font-bold tracking-wider text-muted-foreground uppercase">

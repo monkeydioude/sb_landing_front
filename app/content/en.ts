@@ -8,7 +8,6 @@ export const en: Content = {
     contact: 'Contact us',
     login: 'Login',
     cta: 'Try for free',
-    theme: 'Toggle dark mode',
     menu: 'Open menu',
   },
   footer: { copyright: '© Spendbaker', legal: 'Legal', privacy: 'Privacy policy' },
@@ -16,13 +15,15 @@ export const en: Content = {
     title: 'Marketing Budget Software - Spendbaker',
     description:
       'Build, plan and track your marketing budget in real time. Automated spend ingestion and AI forecasting free marketers from administrative budgeting tasks.',
-    badge: 'MARKETING BUDGET SOFTWARE',
+    badge: 'Marketing Budget Software',
     h1: 'Build and track your *Marketing budget* with ease.',
     sub: 'Your marketing budget deserves better than a spreadsheet. Stop managing your budget manually, use AI and take smarter decisions.',
     cta: 'Try for free',
     hero: {
       before: 'Without Spendbaker',
       after: 'With Spendbaker',
+      beforeAlt: 'A marketer overwhelmed by tangled spreadsheets while ad budget goes up in flames',
+      afterAlt: 'The same marketer relaxed and in control of the budget',
       runway: 'Remaining Q2 Runway',
       runwayValue: '€124,500',
       committed: '78% committed',
@@ -73,7 +74,7 @@ export const en: Content = {
         range: '1-7 / 124',
         rows: [
           {
-            user: 'SL',
+            user: 'clara',
             vendor: 'Northwind Studio',
             category: 'Autumn film shoot',
             path: 'North America › Content & Creative',
@@ -84,7 +85,7 @@ export const en: Content = {
             end: '2026-11-30',
           },
           {
-            user: 'MD',
+            user: 'amir',
             vendor: 'LinkedIn',
             category: 'LinkedIn Ads',
             path: 'Europe › Paid Media',
@@ -95,7 +96,7 @@ export const en: Content = {
             end: '2026-06-30',
           },
           {
-            user: 'MD',
+            user: 'amir',
             vendor: 'Google Ads',
             category: 'Google Ads',
             path: 'North America › Paid Media',
@@ -106,7 +107,7 @@ export const en: Content = {
             end: '2026-06-30',
           },
           {
-            user: 'SL',
+            user: 'clara',
             vendor: 'Bluepeak SEO',
             category: 'SEO retainer',
             path: 'North America › Content & Creative',
@@ -117,7 +118,7 @@ export const en: Content = {
             end: '2026-06-30',
           },
           {
-            user: 'TR',
+            user: 'priya',
             vendor: 'Orbit Events',
             category: 'Summit booth',
             path: 'Europe › Events',
@@ -128,7 +129,7 @@ export const en: Content = {
             end: '2026-09-17',
           },
           {
-            user: 'TR',
+            user: 'priya',
             vendor: 'Meta Ads',
             category: 'Meta Ads',
             path: 'Europe › Paid Media',
@@ -139,7 +140,7 @@ export const en: Content = {
             end: '2026-07-31',
           },
           {
-            user: 'AK',
+            user: 'marcus',
             vendor: 'Pixel & Co',
             category: 'Landing pages',
             path: 'LATAM › Content & Creative',
@@ -155,11 +156,21 @@ export const en: Content = {
     trust: {
       label: 'They trust us',
       rating: '4.7',
-      logos: ['PAYFIT', 'INNOVATELAB', 'FUTUREWORKS', 'DATAFLOW', 'CLOUDSYNC'],
+      logos: [
+        'PAYFIT',
+        'ZENCHEF',
+        'VERGERS DE GALLY',
+        'INNOVATELAB',
+        'FUTUREWORKS',
+        'DATAFLOW',
+        'CLOUDSYNC',
+      ],
     },
     free: {
       title: 'Free marketers *from administrative* budgeting tasks.',
       question: 'How much paid search budget do we have left this quarter?',
+      photoAlt: 'A marketer working calmly at a laptop in a bright shared office',
+      assistantAlt: 'Spendbaker assistant',
       items: [
         {
           title: 'Budget Planning',
@@ -498,10 +509,50 @@ export const en: Content = {
     },
   },
   demo: {
-    title: 'Watch a demo - Spendbaker',
-    description: 'See how Spendbaker builds and tracks your marketing budget in real time.',
-    h1: 'Watch a demo',
-    sub: 'A 2-minute tour of the platform. Coming soon.',
+    title: 'Watch a demo - See Spendbaker in action | Spendbaker',
+    description:
+      'Take the interactive tour: build a marketing budget, log expenses, follow spend by region and ask the AI assistant, all in one platform.',
+    badge: 'Interactive demo',
+    h1: 'See Spendbaker *in action*',
+    sub: 'Watch the platform in four steps, with sample data. Click any step to explore at your own pace, or book a live demo on your own budgets.',
+    ctaPrimary: 'Try for free',
+    ctaSecondary: 'Book a live demo',
+    tourLabel: 'Product tour',
+    steps: [
+      {
+        title: 'Build your budget',
+        text: 'Structure the year by region and category, set monthly amounts and see each line against its budget, with overruns flagged in red.',
+      },
+      {
+        title: 'Log every expense',
+        text: 'Committed and invoiced spend in one list, owned by the person who made it, with vendor, category, status and dates.',
+      },
+      {
+        title: 'Follow spend in real time',
+        text: 'Compare spend with the monthly budget by region, switch between month, quarter and year, and spot the gaps before Finance does.',
+      },
+      {
+        title: 'Ask the assistant',
+        text: 'Skip the filters. Ask a question in plain language and get the answer from your own budget data, with the lines it used.',
+      },
+    ],
+    stepWord: 'Step',
+    prev: 'Previous',
+    next: 'Next',
+    chat: {
+      assistant: 'Spendbaker assistant',
+      question: 'How much paid search budget do we have left this quarter?',
+      answer:
+        'You have **€38,600** left in Paid Media for Q3, with **€21,000** already committed through September. At the current pace you will finish about **€4,200 under budget**.',
+      sources: 'Based on 14 expenses in Paid Media, Q3 2026',
+      placeholder: 'Ask about your budget…',
+    },
+    final: {
+      title: 'Want to see it on *your* budgets?',
+      sub: 'Book a 30-minute live demo with a product specialist, or start the free trial and explore on your own.',
+      cta: 'Start your 14-day free trial',
+      secondary: 'Book a live demo',
+    },
   },
   contact: {
     title: 'Contact us - Book a deeper demo | Spendbaker',

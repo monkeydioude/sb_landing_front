@@ -8,7 +8,6 @@ export const fr: Content = {
     contact: 'Nous contacter',
     login: 'Connexion',
     cta: 'Essayer gratuitement',
-    theme: 'Basculer le mode sombre',
     menu: 'Ouvrir le menu',
   },
   footer: { copyright: '© Spendbaker', legal: 'CGU', privacy: 'Politique de confidentialité' },
@@ -16,13 +15,16 @@ export const fr: Content = {
     title: 'Logiciel de Budget Marketing | Solution Spendbaker',
     description:
       'Construisez, planifiez et suivez votre budget marketing en temps réel. Ingestion automatique des dépenses et prévisions par IA.',
-    badge: 'LOGICIEL DE BUDGET MARKETING',
+    badge: 'Logiciel de budget marketing',
     h1: 'Construisez et suivez votre *budget marketing* en toute simplicité.',
     sub: 'Votre budget marketing mérite mieux qu’un tableur. Arrêtez de le gérer à la main : utilisez l’IA et prenez de meilleures décisions.',
     cta: 'Essayer gratuitement',
     hero: {
       before: 'Sans Spendbaker',
       after: 'Avec Spendbaker',
+      beforeAlt:
+        'Une responsable marketing dépassée par des tableurs pendant que le budget publicitaire part en fumée',
+      afterAlt: 'La même responsable, sereine et maîtrisant son budget',
       runway: 'Reste à dépenser T2',
       runwayValue: '124 500 €',
       committed: '78 % engagé',
@@ -83,7 +85,7 @@ export const fr: Content = {
         range: '1-7 / 124',
         rows: [
           {
-            user: 'SL',
+            user: 'clara',
             vendor: 'Northwind Studio',
             category: 'Tournage d’automne',
             path: 'Amérique du Nord › Contenu & Création',
@@ -94,7 +96,7 @@ export const fr: Content = {
             end: '2026-11-30',
           },
           {
-            user: 'MD',
+            user: 'amir',
             vendor: 'LinkedIn',
             category: 'LinkedIn Ads',
             path: 'Europe › Média payant',
@@ -105,7 +107,7 @@ export const fr: Content = {
             end: '2026-06-30',
           },
           {
-            user: 'MD',
+            user: 'amir',
             vendor: 'Google Ads',
             category: 'Google Ads',
             path: 'Amérique du Nord › Média payant',
@@ -116,7 +118,7 @@ export const fr: Content = {
             end: '2026-06-30',
           },
           {
-            user: 'SL',
+            user: 'clara',
             vendor: 'Bluepeak SEO',
             category: 'Prestation SEO',
             path: 'Amérique du Nord › Contenu & Création',
@@ -127,7 +129,7 @@ export const fr: Content = {
             end: '2026-06-30',
           },
           {
-            user: 'TR',
+            user: 'priya',
             vendor: 'Orbit Events',
             category: 'Stand au sommet',
             path: 'Europe › Événements',
@@ -138,7 +140,7 @@ export const fr: Content = {
             end: '2026-09-17',
           },
           {
-            user: 'TR',
+            user: 'priya',
             vendor: 'Meta Ads',
             category: 'Meta Ads',
             path: 'Europe › Média payant',
@@ -149,7 +151,7 @@ export const fr: Content = {
             end: '2026-07-31',
           },
           {
-            user: 'AK',
+            user: 'marcus',
             vendor: 'Pixel & Co',
             category: 'Pages d’atterrissage',
             path: 'LATAM › Contenu & Création',
@@ -165,11 +167,22 @@ export const fr: Content = {
     trust: {
       label: 'Ils nous font confiance',
       rating: '4,7',
-      logos: ['PAYFIT', 'INNOVATELAB', 'FUTUREWORKS', 'DATAFLOW', 'CLOUDSYNC'],
+      logos: [
+        'PAYFIT',
+        'ZENCHEF',
+        'VERGERS DE GALLY',
+        'INNOVATELAB',
+        'FUTUREWORKS',
+        'DATAFLOW',
+        'CLOUDSYNC',
+      ],
     },
     free: {
       title: 'Libérez les marketeurs *des tâches administratives* du budget.',
       question: 'Combien nous reste-t-il en search payant ce trimestre ?',
+      photoAlt:
+        'Une responsable marketing qui travaille sereinement sur son ordinateur dans un bureau lumineux',
+      assistantAlt: 'Assistant Spendbaker',
       items: [
         {
           title: 'Planification budgétaire',
@@ -518,11 +531,50 @@ export const fr: Content = {
     },
   },
   demo: {
-    title: 'Voir la démo - Spendbaker',
+    title: 'Voir la démo - Spendbaker en action | Spendbaker',
     description:
-      'Découvrez comment Spendbaker construit et suit votre budget marketing en temps réel.',
-    h1: 'Voir la démo',
-    sub: 'Une visite de la plateforme en 2 minutes. Bientôt disponible.',
+      'Suivez la visite interactive : construire un budget marketing, saisir les dépenses, suivre les dépenses par région et interroger l’assistant IA, dans une seule plateforme.',
+    badge: 'Démo interactive',
+    h1: 'Voyez Spendbaker *en action*',
+    sub: 'Découvrez la plateforme en quatre étapes, avec des données d’exemple. Cliquez sur une étape pour explorer à votre rythme, ou réservez une démo en direct sur vos propres budgets.',
+    ctaPrimary: 'Essayer gratuitement',
+    ctaSecondary: 'Réserver une démo',
+    tourLabel: 'Visite du produit',
+    steps: [
+      {
+        title: 'Construisez votre budget',
+        text: 'Structurez l’année par région et par catégorie, fixez les montants mensuels et comparez chaque ligne à son budget, les dépassements ressortant en rouge.',
+      },
+      {
+        title: 'Saisissez chaque dépense',
+        text: 'Dépenses engagées et facturées dans une seule liste, attribuées à leur auteur, avec fournisseur, catégorie, statut et dates.',
+      },
+      {
+        title: 'Suivez les dépenses en temps réel',
+        text: 'Comparez les dépenses au budget mensuel par région, passez du mois au trimestre ou à l’année, et repérez les écarts avant la Finance.',
+      },
+      {
+        title: 'Interrogez l’assistant',
+        text: 'Oubliez les filtres. Posez une question en langage naturel et obtenez la réponse à partir de vos données budgétaires, avec les lignes utilisées.',
+      },
+    ],
+    stepWord: 'Étape',
+    prev: 'Précédent',
+    next: 'Suivant',
+    chat: {
+      assistant: 'Assistant Spendbaker',
+      question: 'Combien nous reste-t-il en search payant ce trimestre ?',
+      answer:
+        'Il vous reste **38 600 €** en Média payant pour le T3, dont **21 000 €** déjà engagés jusqu’en septembre. Au rythme actuel, vous terminerez environ **4 200 € sous le budget**.',
+      sources: 'Basé sur 14 dépenses en Média payant, T3 2026',
+      placeholder: 'Posez une question sur votre budget…',
+    },
+    final: {
+      title: 'Envie de le voir sur *vos* budgets ?',
+      sub: 'Réservez une démo en direct de 30 minutes avec un spécialiste produit, ou lancez l’essai gratuit et explorez à votre rythme.',
+      cta: 'Démarrer l’essai gratuit de 14 jours',
+      secondary: 'Réserver une démo',
+    },
   },
   contact: {
     title: 'Nous contacter - Demander une démo approfondie | Spendbaker',
