@@ -7,7 +7,7 @@ export const fr: Content = {
     demo: 'Voir la démo',
     contact: 'Nous contacter',
     login: 'Connexion',
-    cta: 'Essayer gratuitement',
+    cta: 'Essayez maintenant',
     menu: 'Ouvrir le menu',
   },
   footer: { copyright: '© Spendbaker', legal: 'CGU', privacy: 'Politique de confidentialité' },
@@ -16,9 +16,9 @@ export const fr: Content = {
     description:
       'Construisez, planifiez et suivez votre budget marketing en temps réel. Ingestion automatique des dépenses et prévisions par IA.',
     badge: 'Logiciel de budget marketing',
-    h1: 'Construisez et suivez votre *budget marketing* en toute simplicité.',
-    sub: 'Votre budget marketing mérite mieux qu’un tableur. Arrêtez de le gérer à la main : utilisez l’IA et prenez de meilleures décisions.',
-    cta: 'Essayer gratuitement',
+    h1: 'Simplifiez la construction et le suivi de votre *budget marketing.*',
+    sub: 'Dites adieu à la gestion manuelle des budgets marketing sur tableurs. Boostez votre ROI marketing grâce à l’IA et reprenez le contrôle de vos budgets.',
+    cta: 'Essayez maintenant',
     hero: {
       before: 'Sans Spendbaker',
       after: 'Avec Spendbaker',
@@ -178,8 +178,8 @@ export const fr: Content = {
       ],
     },
     free: {
-      title: 'Libérez les marketeurs *des tâches administratives* du budget.',
-      question: 'Combien nous reste-t-il en search payant ce trimestre ?',
+      title: 'Libérer les marketeurs *des tâches administratives* liées à la gestion des budgets.',
+      question: 'Combien de budget me reste-t-il ce quarter ?',
       photoAlt:
         'Une responsable marketing qui travaille sereinement sur son ordinateur dans un bureau lumineux',
       assistantAlt: 'Assistant Spendbaker',
@@ -199,16 +199,16 @@ export const fr: Content = {
       ],
     },
     gaps: {
-      title: 'Plus de décalage avec la *Finance*. Maîtrisez *vos dépenses* et *votre narration.*',
+      title: 'Plus d’écart avec la *Finance*. Contrôlez *vos coûts* et *votre storytelling.*',
       cards: [
         {
-          title: 'Gestion du budget en temps réel',
-          text: 'Voyez le tableau complet. Centralisez vos dépenses marketing dans un processus automatisé qui vous garde en contrôle.',
+          title: 'Gestion des budgets en temps réel',
+          text: 'Ne perdez plus le fil sur les montants de votre budget en centralisant toutes vos dépenses marketing avec un process automatisé.',
           cta: 'Découvrir',
         },
         {
-          title: 'Ajoutez vos dépenses facilement',
-          text: 'Permettez à vos équipes de saisir dépenses engagées et facturées dans un seul workflow centralisé et automatisé. Fini la multiplication des onglets.',
+          title: 'Ajoutez des dépenses simplement',
+          text: 'Demandez à vos équipes marketing d’ajouter leurs dépenses engagées et facturées dans un process centralisé et automatisé. Terminé les Excels sheet à rallonge ou les multiples onglets.',
           cta: 'Découvrir',
         },
       ],
@@ -238,11 +238,14 @@ export const fr: Content = {
       items: ['Google Ads', 'Instagram', 'Facebook', 'LinkedIn', 'G2', 'Slack', 'Claude', 'Bing'],
     },
     quote: {
-      text: 'Quand le Marketing maîtrise les chiffres, les échanges avec la Finance deviennent *vraiment stratégiques.*',
+      text: 'Quand le marketing maîtrise ses chiffres, les échanges avec la finance deviennent plus *stratégiques.*',
       author: 'Idriss Roumili',
-      role: 'Growth Director chez PayFit',
+      role: 'Director Growth chez PayFit',
     },
-    final: { title: 'Le budget marketing devient enfin *simple.*', cta: 'Essayer gratuitement' },
+    final: {
+      title: 'Le budget marketing devient un *jeu d’enfant.*',
+      cta: 'Commencez aujourd’hui',
+    },
   },
   features: {
     title: 'Fonctionnalités - Logiciel de budget marketing | Spendbaker',
@@ -250,8 +253,8 @@ export const fr: Content = {
       'Construction budgétaire, opérations quotidiennes et reporting assisté par IA dans une seule plateforme : budgets multi-niveaux, synchronisation publicitaire en direct, validations, piste d’audit et connecteur MCP natif.',
     badge: 'FONCTIONNALITÉS & CAPACITÉS',
     version: 'version 3.4',
-    h1: 'Un logiciel de budget marketing pour *planifier* et suivre vos dépenses.',
-    sub: 'La gestion du budget marketing est traditionnellement manuelle, complexe et fragmentée. Spendbaker réunit le pilotage multicanal, les engagements d’achat et la performance en direct dans une seule plateforme intelligente.',
+    h1: 'Un logiciel SaaS qui *construit, planifie et suit* vos budgets marketing en temps réel',
+    sub: 'La gestion du budget marketing est un processus manuel, complexe et fragmenté. Spendbaker unifie tout en une seule plateforme intelligente.',
     chips: [
       'Synchronisation publicitaire sous la minute',
       'Conforme SOC2 et audit financier',
@@ -290,7 +293,7 @@ export const fr: Content = {
     },
     construction: {
       index: '01',
-      title: 'Construction du budget',
+      title: 'Budget Construction',
       sub: 'Formulation, hiérarchie et contrôles organisationnels',
       phase: '01 / Formulation',
       campaign: {
@@ -326,7 +329,7 @@ export const fr: Content = {
     },
     operations: {
       index: '02',
-      title: 'Opérations budgétaires',
+      title: 'Budget Operations',
       sub: 'Suivi quotidien des transactions, flux publicitaires en direct et réallocations',
       phase: '02 / Exécution',
       ads: {
@@ -369,7 +372,7 @@ export const fr: Content = {
     },
     reporting: {
       index: '03',
-      title: 'Reporting et intelligence budgétaire',
+      title: 'Budget Reporting',
       sub: 'Synthèses pour le comité de direction, modèles de CAC prédictifs et intégration LLM native',
       phase: '03 / Analyse & IA',
       dashboards: {
@@ -412,7 +415,7 @@ export const fr: Content = {
     },
     cta: {
       tag: 'AGILITÉ SANS ÉGALE',
-      title: 'Le budget marketing devient un *terrain de jeu*',
+      title: 'Le budget marketing devient un *jeu d’enfant.*',
       sub: 'Dites adieu aux tableurs cassés, aux factures d’agences désynchronisées et aux courses de fin de trimestre. Découvrez une gouvernance financière sans effort.',
       primary: 'Démarrer l’essai gratuit de 14 jours',
       secondary: 'Planifier une démo interactive',
@@ -428,7 +431,7 @@ export const fr: Content = {
     description:
       'Commencez gratuitement, passez à Pro pour l’accès complet. Tarifs transparents, essai gratuit de 14 jours, sans carte bancaire.',
     badge: 'Tarifs transparents & ROI',
-    h1: 'Encore un outil ? Celui-ci va *vous faire économiser.*',
+    h1: 'Un outil de plus ? Celui-ci va vous faire des *économies.*',
     sub: 'Éliminez les fuites budgétaires, fluidifiez les validations des plateformes publicitaires et optimisez votre retour marketing sans approximation.',
     billing: {
       label: 'Période de facturation',
@@ -486,7 +489,7 @@ export const fr: Content = {
       { title: 'SOC-2 & RGPD', text: 'Sécurité de niveau bancaire' },
     ],
     faq: {
-      title: 'FAQ',
+      title: 'Questions fréquentes',
       sub: 'Les questions fréquentes sur nos niveaux de gouvernance, les comptes multi-utilisateurs et les connexions aux plateformes.',
       items: [
         {
@@ -524,7 +527,7 @@ export const fr: Content = {
       ],
     },
     final: {
-      title: 'Le budget marketing devient enfin *simple.*',
+      title: 'Le budget marketing devient un *jeu d’enfant.*',
       sub: 'Rejoignez les marketeurs en forte croissance qui ont remplacé les rapprochements de tableurs par une vision budgétaire en temps réel.',
       cta: 'Démarrer l’essai gratuit de 14 jours',
       secondary: 'Planifier une démo',
