@@ -61,7 +61,6 @@ function HeroVisual({ t }: { t: Home['hero'] }) {
               {t.after}
             </span>
           }
-          right
         />
         <span
           className="absolute top-1/2 left-1/2 grid size-9 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-white shadow-lg"
