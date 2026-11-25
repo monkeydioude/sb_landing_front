@@ -1,6 +1,6 @@
 import { BarChart3, ReceiptText, ShieldCheck } from 'lucide-react';
 import assistantHappy from '~/assets/photos/assistant-happy.webp';
-import laptop1100 from '~/assets/photos/laptop-1100.webp';
+import laptop837 from '~/assets/photos/laptop-837.webp';
 import laptop640 from '~/assets/photos/laptop-640.webp';
 import { Container } from '~/components/Container';
 import type { Home } from '~/content/types';
@@ -17,7 +17,7 @@ export function FreeMarketers({ t }: { t: Home['free'] }) {
           <div className="reveal relative h-80 overflow-hidden rounded-2xl bg-muted lg:h-96">
             <img
               src={laptop640}
-              srcSet={`${laptop640} 640w, ${laptop1100} 1100w`}
+              srcSet={`${laptop640} 640w, ${laptop837} 837w`}
               sizes="(min-width: 1024px) 540px, 100vw"
               alt={t.photoAlt}
               width={640}
